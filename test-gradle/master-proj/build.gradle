@@ -1,0 +1,21 @@
+allprojects { 
+  apply plugin: 'java'
+  apply plugin: 'eclipse'
+  
+  repositories {
+    mavenCentral()
+  }
+}
+
+
+
+[':bl', ':dao', ':rest'].each { pn ->
+	project(pn) { 
+		dependencies {
+			compile 'org.springframework:spring-context:4.1.0.RELEASE'
+			compile project(':be')
+			testCompile group: 'junit', name: 'junit', version: '4.+'
+			testCompile 'org.springframework:spring-test:4.1.0.RELEASE'
+		}
+	}
+}
